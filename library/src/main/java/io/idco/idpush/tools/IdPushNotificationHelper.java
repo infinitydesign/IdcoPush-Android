@@ -21,7 +21,7 @@ public class IdPushNotificationHelper {
 
     public static final String CHANNEL_DEFAULT = "default";
 
-    public static final int ID_MESSAGE = 1;
+    public static final int ID_MESSAGE = 1001;
 
     public static void showMessage(Context context, IDPush.Model model) {
         if (context == null)
