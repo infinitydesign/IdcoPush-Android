@@ -19,9 +19,6 @@ import io.idco.idpush.tools.IdPushUtils;
 
 public class IDPush {
 
-    public static final String BROADCAST_FIREBASE_MESSAGE = IDPush.class.getName() + ".BROADCAST_FIREBASE_MESSAGE";
-    public static final String KEY_INTENT = IDPush.class.getName() + ".KEY_MODEL";
-
     @SuppressLint("StaticFieldLeak")
     private static IDPush availableInstance;
 

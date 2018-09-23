@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.LocalBroadcastManager;
 
 import io.idco.idpush.IDPush;
 import io.idco.idpush.R;
@@ -36,10 +35,6 @@ public class IdPushNotificationHelper {
                 pendingIntent, 1, false);
 
         notify(context, ID_MESSAGE, builder);
-
-        Intent broadcastIntent = new Intent(IDPush.BROADCAST_FIREBASE_MESSAGE);
-        broadcastIntent.putExtra(IDPush.KEY_INTENT, model);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
     }
 
     private static NotificationCompat.Builder createBuilder(Context context, String title, String contentText, String bigContent, PendingIntent pendingIntent, int numbers, boolean forceSilent) {
