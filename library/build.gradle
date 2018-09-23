@@ -3,8 +3,8 @@ apply plugin: 'com.android.library'
 
 def library_groupId = 'io.idco'
 def library_artifactId = 'idpush-fcm'
-def library_versionCode = 6
-def library_versionName = '1.0.2'
+def library_versionCode = 8
+def library_versionName = '1.0.3'
 
 publish {
 
