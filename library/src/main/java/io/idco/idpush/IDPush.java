@@ -88,7 +88,7 @@ public class IDPush {
 
         Object appBuildConfig = getBuildConfigValue(context, "VERSION_NAME");
         String appVersion = appBuildConfig == null ? "UNKNOWN" : appBuildConfig.toString();
-        IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PROJECT_ID, appVersion);
+        IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_APP_VERSION, appVersion);
 
         String lastToken = IdPushSPHelper.getString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_FIREBASE_TOKEN_SYNC_API, "");
         if (!lastToken.equals(IdPushMessagingService.getToken(context))) {
