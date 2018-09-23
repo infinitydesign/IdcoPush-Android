@@ -28,7 +28,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.android.support:appcompat-v7:' + project.ext.appCompat
-    implementation "com.google.android.gms:play-services-gcm:15.0.1"
     implementation 'com.google.firebase:firebase-messaging:17.3.0'
 
     /////////////////////////////////REST API///////////////////////////////////////////

@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+def library_groupId = 'io.idco'
+def library_artifactId = 'idpush'
+def library_versionCode = 2
+def library_versionName = '1.0.0'
+
 android {
     compileSdkVersion project.ext.compileSdkVersion
 
@@ -7,8 +12,8 @@ android {
         applicationId "io.idco.idpush_sample"
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.1"
+        versionCode library_versionCode
+        versionName library_versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -29,4 +34,12 @@ dependencies {
     implementation project(':library')
 }
 
+ext {
+    PUBLISH_GROUP_ID = library_groupId
+    PUBLISH_ARTIFACT_ID = library_artifactId
+    PUBLISH_VERSION = library_versionName
+}
+
 apply plugin: 'com.google.gms.google-services'
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
