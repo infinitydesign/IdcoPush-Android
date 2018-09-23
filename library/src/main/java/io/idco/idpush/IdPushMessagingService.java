@@ -89,12 +89,11 @@ public class IdPushMessagingService extends FirebaseMessagingService {
 
             @Override
             public void onCompletedApi(int requestType) {
-                IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_FIREBASE_TOKEN_SYNC_API, getToken(context));
             }
 
             @Override
             public <T> void onSuccessApi(Response<T> rs, int requestType) {
-
+                IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_FIREBASE_TOKEN_SYNC_API, getToken(context));
             }
 
             @Override
