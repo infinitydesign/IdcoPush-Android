@@ -16,6 +16,7 @@ public class IdPushSPHelper {
     public static final String KEY_FIREBASE_TOKEN = "firebaseToken";
     public static final String KEY_PROJECT_ID = "projectId";
     public static final String KEY_APP_VERSION = "appVersion";
+    public static final String KEY_PLAYER_ID = "playerId";
 
     @SuppressWarnings("unused")
     public static boolean getBoolean(Context c, String settingName, String key, boolean def) {

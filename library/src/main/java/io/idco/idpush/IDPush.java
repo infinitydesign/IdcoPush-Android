@@ -101,6 +101,10 @@ public class IDPush {
         return availableInstance == null ? new IDPush() : availableInstance;
     }
 
+    public static String getPlayerId(Context context) {
+        return IdPushSPHelper.getString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PLAYER_ID, "");
+    }
+
     @SuppressWarnings("SameParameterValue")
     private static Object getBuildConfigValue(Context context, String fieldName) {
         try {
