@@ -10,6 +10,7 @@ import com.google.firebase.FirebaseApp;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
+import io.idco.idpush.tools.IdPushNotificationHelper;
 import io.idco.idpush.tools.IdPushSPHelper;
 import io.idco.idpush.tools.IdPushUtils;
 
@@ -110,6 +111,10 @@ public class IDPush {
         if (!lastToken.equals(IdPushMessagingService.getToken(context))) {
             IdPushMessagingService.callApiDeviceAdd(context, IdPushMessagingService.getToken(context));
         }
+    }
+
+    public static void cancelAllNotification(Context context) {
+        IdPushNotificationHelper.cancelAll(context);
     }
 
     @SuppressWarnings("SameParameterValue")
