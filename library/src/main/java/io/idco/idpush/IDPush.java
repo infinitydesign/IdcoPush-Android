@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.google.firebase.FirebaseApp;
 
@@ -124,6 +125,7 @@ public class IDPush {
             Field field = clazz.getField(fieldName);
             return field.get(null);
         } catch (Exception e) {
+            Log.d("xxxxxxxxx", e.toString(), e);
             e.printStackTrace();
         }
         return null;
