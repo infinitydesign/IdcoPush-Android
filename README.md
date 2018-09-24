@@ -1,5 +1,5 @@
 Android version of Idco Push Library
 ====================================
 last release version:
- code : 14
- name : 1.0.6
+ code : 16
+ name : 1.1.0
