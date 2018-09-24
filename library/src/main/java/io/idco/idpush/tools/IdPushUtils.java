@@ -24,13 +24,14 @@ public class IdPushUtils {
         }
     }
 
-    public static int getAppVersion(Context context) {
+    public static String getAppVersionName(Context context) {
         try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            return pInfo.versionCode;
+            String packageName = IdPushSPHelper.getString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PACKAGE_NAME, "");
+            PackageInfo pInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+            return pInfo.versionName;
         } catch (Exception e) {
             e.printStackTrace();
-            return -1;
+            return "UNKNOWN";
         }
     }
 

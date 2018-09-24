@@ -17,6 +17,7 @@ public class IdPushSPHelper {
     public static final String KEY_PROJECT_ID = "projectId";
     public static final String KEY_APP_VERSION = "appVersion";
     public static final String KEY_PLAYER_ID = "playerId";
+    public static final String KEY_PACKAGE_NAME = "packageName";
 
     @SuppressWarnings("unused")
     public static boolean getBoolean(Context c, String settingName, String key, boolean def) {

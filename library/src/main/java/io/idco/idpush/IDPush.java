@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 
 import com.google.firebase.FirebaseApp;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 
 import io.idco.idpush.tools.IdPushNotificationHelper;
 import io.idco.idpush.tools.IdPushSPHelper;
@@ -84,15 +82,10 @@ public class IDPush {
         }
 
         IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PROJECT_ID, projectId);
+        IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PACKAGE_NAME, context.getPackageName());
+        IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_APP_VERSION, IdPushUtils.getAppVersionName(context));
 
-        Object appBuildConfig = getBuildConfigValue(context, "VERSION_NAME");
-        String appVersion = appBuildConfig == null ? "UNKNOWN" : appBuildConfig.toString();
-        IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_APP_VERSION, appVersion);
-
-        String lastToken = IdPushSPHelper.getString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_FIREBASE_TOKEN_SYNC_API, "");
-        if (!lastToken.equals(IdPushMessagingService.getToken(context))) {
-            IdPushMessagingService.callApiDeviceAdd(context, IdPushMessagingService.getToken(context));
-        }
+        checkDeviceAdded(context);
 
         availableInstance = new IDPush();
         availableInstance.context = context;
@@ -116,19 +109,6 @@ public class IDPush {
 
     public static void cancelAllNotification(Context context) {
         IdPushNotificationHelper.cancelAll(context);
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private static Object getBuildConfigValue(Context context, String fieldName) {
-        try {
-            Class<?> clazz = Class.forName(context.getPackageName() + ".BuildConfig");
-            Field field = clazz.getField(fieldName);
-            return field.get(null);
-        } catch (Exception e) {
-            Log.d("xxxxxxxxx", e.toString(), e);
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @SuppressWarnings("unused")
