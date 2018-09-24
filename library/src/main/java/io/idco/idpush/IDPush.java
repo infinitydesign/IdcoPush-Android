@@ -105,6 +105,13 @@ public class IDPush {
         return IdPushSPHelper.getString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PLAYER_ID, "");
     }
 
+    public static void checkDeviceAdded(Context context) {
+        String lastToken = IdPushSPHelper.getString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_FIREBASE_TOKEN_SYNC_API, "");
+        if (!lastToken.equals(IdPushMessagingService.getToken(context))) {
+            IdPushMessagingService.callApiDeviceAdd(context, IdPushMessagingService.getToken(context));
+        }
+    }
+
     @SuppressWarnings("SameParameterValue")
     private static Object getBuildConfigValue(Context context, String fieldName) {
         try {
