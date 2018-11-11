@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.concurrent.TimeUnit;
 
-import io.idco.idpush.BuildConfig;
+import io.idco.idpush.tools.IdPushLogHelper;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -50,7 +50,7 @@ public class IdPushRetrofitClient {
                 .writeTimeout(TIMEOUT_WRITE, TimeUnit.MILLISECONDS)
                 .readTimeout(TIMEOUT_READ, TimeUnit.MILLISECONDS);
 
-        if (BuildConfig.DEBUG) {
+        if (IdPushLogHelper.allowLog) {
             builder.addInterceptor(logging);
         }
 
