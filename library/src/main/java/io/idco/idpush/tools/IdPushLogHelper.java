@@ -2,8 +2,6 @@ package io.idco.idpush.tools;
 
 import android.util.Log;
 
-import io.idco.idpush.BuildConfig;
-
 /**
  * Created by 1HE on 09/23/2018
  */
@@ -11,7 +9,7 @@ import io.idco.idpush.BuildConfig;
 @SuppressWarnings({"unused", "DefaultFileTemplate"})
 public class IdPushLogHelper {
 
-    public static boolean allowLog = BuildConfig.DEBUG;
+    public static boolean allowLog = true;
 
     @SuppressWarnings("UnusedReturnValue")
     public static int d(String tag, String message) {
