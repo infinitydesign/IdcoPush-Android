@@ -11,7 +11,7 @@ import io.idco.idpush.BuildConfig;
 @SuppressWarnings({"unused", "DefaultFileTemplate"})
 public class IdPushLogHelper {
 
-    public static final boolean allowLog = BuildConfig.DEBUG;
+    public static boolean allowLog = BuildConfig.DEBUG;
 
     @SuppressWarnings("UnusedReturnValue")
     public static int d(String tag, String message) {
