@@ -1,11 +1,17 @@
 package io.idco.idpush.api;
 
 import android.content.Context;
+import android.os.Build;
+import android.webkit.WebSettings;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.idco.idpush.tools.IdPushLogHelper;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -48,7 +54,16 @@ public class IdPushRetrofitClient {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
                 .writeTimeout(TIMEOUT_WRITE, TimeUnit.MILLISECONDS)
-                .readTimeout(TIMEOUT_READ, TimeUnit.MILLISECONDS);
+                .readTimeout(TIMEOUT_READ, TimeUnit.MILLISECONDS)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request.Builder builder = chain.request().newBuilder();
+                        if (Build.VERSION.SDK_INT >= 17)
+                            builder.addHeader("User-Agent", WebSettings.getDefaultUserAgent(context));
+                        return chain.proceed(builder.build());
+                    }
+                });
 
         if (IdPushLogHelper.allowLog) {
             builder.addInterceptor(logging);
