@@ -95,8 +95,12 @@ public class IdPushMessagingService extends FirebaseMessagingService {
             public <T> void onSuccessApi(Response<T> rs, int requestType) {
                 Response<IdPushResponse> response = (Response<IdPushResponse>) rs;
                 IdPushResponse body = response.body();
-                IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_FIREBASE_TOKEN_SYNC_API, getToken(context));
-                IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PLAYER_ID, body.getPlayerId());
+                if (body.getStatus() == 1) {
+                    IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_FIREBASE_TOKEN_SYNC_API, getToken(context));
+                    IdPushSPHelper.setString(context, IdPushSPHelper.SETTING, IdPushSPHelper.KEY_PLAYER_ID, body.getPlayerId());
+                } else {
+                    IdPushLogHelper.d(TAG, "status = 0");
+                }
             }
 
             @Override
