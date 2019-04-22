@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.idco.idpush.IDPush;
 import io.idco.idpush.R;
 
@@ -21,7 +24,8 @@ public class IdPushNotificationHelper {
 
     public static final String CHANNEL_DEFAULT = "default";
 
-    public static final int ID_MESSAGE = 1001;
+    public static int ID_MESSAGE = 100001;
+    private static final List<Integer> ids = new ArrayList();
 
     public static void showMessage(Context context, IDPush.Model model) {
         if (context == null)
@@ -35,6 +39,8 @@ public class IdPushNotificationHelper {
                 pendingIntent, 1, false);
 
         notify(context, ID_MESSAGE, builder);
+        ids.add(ID_MESSAGE);
+        ID_MESSAGE++;
     }
 
     private static NotificationCompat.Builder createBuilder(Context context, String title, String contentText, String bigContent, PendingIntent pendingIntent, int numbers, boolean forceSilent) {
@@ -88,6 +94,7 @@ public class IdPushNotificationHelper {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             assert notificationManager != null;
             notificationManager.cancel(id);
+            ids.remove(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +104,14 @@ public class IdPushNotificationHelper {
         try {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             assert notificationManager != null;
-            notificationManager.cancelAll();
+            for (Integer i : ids) {
+                try {
+                    notificationManager.cancel(i);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            ids.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
